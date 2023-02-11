@@ -1,11 +1,6 @@
 import os
 import sys
 
-"""
-When you download things from some sites, they come with annoying names with equally annoying suffixes 
-This script removes _ (underscore) and the weird suffix from ALL the files in a directory or from a single file
-"""
-
 
 def rename(path: str):
     for file in os.scandir(path):
@@ -17,15 +12,15 @@ def rename(path: str):
         filename_arr = file.name.split("_")
 
         if len(filename_arr) <= 1:
-            print("Nothing to rename here... exiting now")
+            print("[done] nothing to rename here... :)")
             exit(0)
 
         new_filename = " ".join(filename_arr[:len(filename_arr)-1]) + f".{ext}"
         src, dest = f"{path}/{file.name}", f"{path}/{new_filename}"
         os.rename(src, dest)
-        print(f"[done] {file.name} --> {new_filename}")
+        print(f"[renamed] {file.name} --> {new_filename}")
 
-    print("All done!")
+    print("[done] all done!")
 
 
 def main():
